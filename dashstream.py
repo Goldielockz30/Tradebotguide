@@ -2,7 +2,7 @@
 
 
 import streamlit as st
-from cryptobot import get_balances, fetch_data, calculate_rsi, place_order, get_exchange
+from trade_functions import get_balances, fetch_data, calculate_rsi, place_order, get_exchange
 import pandas as pd
 
 st.title("My Trading Bot Dashboard")
