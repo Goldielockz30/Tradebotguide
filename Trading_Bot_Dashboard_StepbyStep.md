@@ -13,7 +13,8 @@
 ```bash
 
   python --version           # verify you have python - If Python is accessible, it will return its version 
-
+```
+```bash
   # or, on macOS/Linux:
   python3 --version
 
