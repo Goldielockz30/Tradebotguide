@@ -100,7 +100,7 @@ pip freeze > requirements.txt
 ```
 
 - Global Packages: If you run pip freeze without activating a virtual environment, it will list all globally installed packages, which may not be relevant to your project. In such cases, you can manually edit the requirements.txt file to include only the necessary packages.
-
+- Copy and paste this into your requirements file you wont need the whole list that generates if its more than this.
 ```bash
 
 ccxt==4.4.90          # For exchange access (Binance, etc.)
