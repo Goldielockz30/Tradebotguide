@@ -12,21 +12,34 @@
 
 - Create and activate a virtual environment (recommended):  
   ```bash
+
+  python --version           # verify you have python - If Python is accessible, it will return its version 
+  ```
+
+  ```bash
   python -m venv .venv          # Create the virtual environment (skip if you get a "permission denied" error) 
+  ```
 
-  source .venv/bin/activate     # On macOS/Linux  
+  ```bash
+  .\.venv\Scripts\Activate.ps1        # On Windows powershell - works in VS Code
+  ```
 
-  .\.venv\Scripts\Activate.ps1        # On Windows powershell
-
+  ```bash
   .\.venv\Scripts\activate.bat        # On Windows (Command Prompt):
+  ```
 
+  ```bash
+  source .venv/bin/activate     # On macOS/Linux  
+  ```
+
+  ```bash
   deactivate # To leave the environment (if needed)
 
-  ```
+  ``` 
 
 - Install the following packages in the virtual environment:  
   ```bash
-  pip install ccxt pandas ta streamlit
+  pip install ccxt pandas ta streamlit tzlocal
   ```  
 
 - Create Binance API keys and enable testnet if needed.
@@ -117,8 +130,12 @@ if __name__ == "__main__":
 
 ```python
 import streamlit as st
-from trade_functions import get_balances, fetch_data, calculate_rsi, place_order
+from trade_functions import get_balances, fetch_data, calculate_rsi, place_order, check_signal
 import pandas as pd
+from tzlocal import get_localzone
+
+if 'last_action' not in st.session_state:
+    st.session_state.last_action = None
 
 st.title("My Trading Bot Dashboard")
 
@@ -141,35 +158,60 @@ st.write(f"Current BTC Price: ${current_price:.2f}")
 rsi_buy = st.slider('RSI Buy Threshold', min_value=10, max_value=50, value=30)
 rsi_sell = st.slider('RSI Sell Threshold', min_value=50, max_value=90, value=60)
 
-# 5. Show Buy/Sell Signals based on slider values
+# 5. Show Buy/Sell Signals and auto execute
+signal, current_rsi = check_signal(df, rsi_buy, rsi_sell)
 if current_rsi < rsi_buy:
+    signal = "buy"
     st.success("🚀 Buy Signal!")
 elif current_rsi > rsi_sell:
+    signal = "sell"
     st.error("📉 Sell Signal")
 else:
     st.info("No clear signal")
 
-# 6. Show price and RSI charts
+# 6. Auto-trade logic (once per signal)
+if signal and signal != st.session_state.last_action:
+    order_amount = st.number_input(
+        "Order Amount (BTC)", min_value=0.0001, max_value=1.0, value=0.001, step=0.0001, format="%.4f", key="order_amount"
+    )
+    # Execute trade
+    place_order(signal, order_amount)
+    st.success(f"🔄 Auto {signal.capitalize()} Order executed for {order_amount} BTC")
+    st.session_state.last_action = signal
+
+# 7. Show price + RSI chart
 st.line_chart(df[['close', 'rsi']])
 
-# 7. Manual Order Amount Input
-order_amount = st.number_input("Order Amount (BTC)", min_value=0.0001, max_value=1.0, value=0.001, step=0.0001)
+# 8. Manual order input
+manual_order_amount = st.number_input("Order Amount (BTC)", min_value=0.0001, max_value=1.0, value=0.001, step=0.0001, format="%.4f", key="manual_order_amount")
 
 if st.button("Buy BTC"):
-    place_order("buy", amount=order_amount)
-    st.success(f"Buy order for {order_amount} BTC placed!")
+    place_order("buy", amount=manual_order_amount)
+    st.success(f"Buy order for {manual_order_amount} BTC placed!")
 
 if st.button("Sell BTC"):
-    place_order("sell", amount=order_amount)
-    st.success(f"Sell order for {order_amount} BTC placed!")
+    place_order("sell", amount=manual_order_amount)
+    st.success(f"Sell order for {manual_order_amount} BTC placed!")
 
-# 8. Fetch and display recent trades (optional)
+# 9. Fetch and display recent trades (optional)
 exchange = get_exchange()
 try:
     trades = exchange.fetch_my_trades(symbol='BTC/USDT', limit=5)
     trades_df = pd.DataFrame(trades)
+
     if not trades_df.empty:
-        trades_df['timestamp'] = pd.to_datetime(trades_df['timestamp'], unit='ms')
+        # 1. Convert to datetime with UTC timezone awareness
+        trades_df['timestamp'] = pd.to_datetime(
+            trades_df['timestamp'], unit='ms', utc=True
+        )
+
+        # 2. Convert to local timezone (auto-detected)
+        local_tz = get_localzone()
+        trades_df['timestamp'] = trades_df['timestamp'].dt.tz_convert(local_tz)
+
+        # 3. Remove timezone info for display, so it's shown naively in local time
+        trades_df['timestamp'] = trades_df['timestamp'].dt.tz_localize(None)
+
         st.subheader("🧾 Recent Trades")
         st.dataframe(trades_df[['timestamp', 'side', 'price', 'amount']])
 except Exception as e:
@@ -190,6 +232,14 @@ streamlit run dashstream.py
   http://localhost:8501
 
 ---
+
+Once your dashboard is running you will start off with 0 BTC and around 15K USDT you need to manually buy the BTC your bot dashboard, you will need enough so that your bot can auto trade for you, it can't do this with 0 BTC
+
+- Manually click your dashboard's "Buy BTC" button—this uses USDT to purchase BTC at market price.
+
+- After that, you'll have some BTC (e.g., 0.001 BTC) stored in your testnet account.
+
+- With BTC in your balance, your automation logic (based on RSI thresholds or other rules) can now operate, placing buy/sell orders as designed.
 
 ## 5. Extra Dashboard Features
 

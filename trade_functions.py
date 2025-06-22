@@ -35,11 +35,12 @@ def calculate_rsi(df):
 
 def check_signal(df, rsi_buy_threshold, rsi_sell_threshold):
     last_rsi = df['rsi'].iloc[-1]
-    print(f"Current RSI: {last_rsi:.2f}")
     if last_rsi < rsi_buy_threshold:
-        print(">> BUY SIGNAL")
+        return "buy", last_rsi
     elif last_rsi > rsi_sell_threshold:
-        print(">> SELL SIGNAL")
+        return "sell", last_rsi
+    return None, last_rsi
+
 
 def get_balances():
     balance = exchange.fetch_balance()
