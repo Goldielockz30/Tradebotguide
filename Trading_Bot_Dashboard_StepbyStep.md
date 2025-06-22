@@ -46,6 +46,8 @@ sudo apt-get install python3  # Ubuntu/Debian
    mkdir tradebot
    cd tradebot              # this takes you into your folder where you will create your files
 ```
+- At this pount you will be working inside the folder but to view it on VS Code for easy monitoring and editing please click file at the top left and then open folder go into your tradebot folder that you just created on your desktop
+
 - Create and activate a virtual environment (recommended):  
   
 
@@ -82,7 +84,7 @@ sudo apt-get install python3  # Ubuntu/Debian
 
 
 
-- Create Binance API keys and enable testnet if needed.
+- Create Binance API keys and save them into a note file because these wont be shown to you again
 
 ---
 
@@ -100,6 +102,7 @@ pip freeze > requirements.txt
 - Global Packages: If you run pip freeze without activating a virtual environment, it will list all globally installed packages, which may not be relevant to your project. In such cases, you can manually edit the requirements.txt file to include only the necessary packages.
 
 ```bash
+
 ccxt==4.4.90          # For exchange access (Binance, etc.)
 pandas==2.3.0         # For data manipulation
 ta==0.11.0            # For technical analysis indicators (e.g. RSI)
