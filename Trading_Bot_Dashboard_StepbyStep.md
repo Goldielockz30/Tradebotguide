@@ -6,7 +6,7 @@
 
 ## 1. Prerequisites
 
-- Open VS Code: to effectively work with Python in Visual Studio Code (VS Code), you should install the Python extension
+- Open VS Code: install the Python extension to effectively work with Python in Visual Studio Code (VS Code)
 
 - Check if you have Python 3.9+ installed: to check that it has been installed run this in the VS Code command line
 
