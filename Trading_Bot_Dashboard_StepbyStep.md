@@ -370,7 +370,7 @@ Once your dashboard is running you will start off with 0 BTC and around 15K USDT
 - **Command pip installs to global Python**  
   ➤ You probably didn’t activate the virtual environment.  
     Run:  
-    ```bash
+```bash
     source .venv/bin/activate           # On macOS/Linux  
 
     .\.venv\Scripts\Activate.ps1        # On Windows powershell
@@ -378,7 +378,7 @@ Once your dashboard is running you will start off with 0 BTC and around 15K USDT
     .\.venv\Scripts\activate.bat        # On Windows (Command Prompt):
 
 
-    ```
+```
 
 - **Installed packages but still getting ImportError**  
   ➤ Make sure you install packages after activating `.venv`, or they go to the global Python
