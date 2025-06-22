@@ -54,9 +54,12 @@ sudo apt-get install python3  # Ubuntu/Debian
   ```
   - Virtual Environment Activation: Ensure that your virtual environment is activated before running pip freeze. This ensures that only the packages installed within the virtual environment are included in the requirements.txt file, not global packages.
 
+  - We will use this first command
+
   ```bash
   .\.venv\Scripts\Activate.ps1        # On Windows powershell - works in VS Code
   ```
+  - alternatively
 
   ```bash
   .\.venv\Scripts\activate.bat        # On Windows (Command Prompt):
@@ -65,6 +68,7 @@ sudo apt-get install python3  # Ubuntu/Debian
   ```bash
   source .venv/bin/activate     # On macOS/Linux  
   ```
+  - To deactivate
 
   ```bash
   deactivate # To leave the environment (if needed)
