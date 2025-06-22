@@ -36,7 +36,11 @@ brew install python  # macOS (Homebrew)
 sudo apt-get install python3  # Ubuntu/Debian
 
 ```
+- from the VS Code command line navigate into desktop
+```bash
+  cd ~/Desktop
 
+```
 - Create a project folder (e.g., `tradebot`)  
 ```bash 
    mkdir tradebot
