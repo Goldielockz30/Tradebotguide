@@ -2,6 +2,17 @@
 # Step-by-Step Guide to Building a Streamlit Trading Bot Dashboard with VS Code  
 **By Nana Johnson**
 
+## Need Help Installing This Bot?
+
+### I offer full setup & dashboard hosting:
+- 1-on-1 call
+- Bot installation
+- Custom settings
+- API help
+
+Book now → [Calendly or Stripe link]
+
+
 ---
 
 ## 1. Prerequisites
