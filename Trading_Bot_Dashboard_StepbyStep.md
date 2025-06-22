@@ -95,7 +95,7 @@ Inside your `tradebot` folder, create the following files:
 - Once all required packages are installed, generate the requirements.txt file:
 
 ```bash 
-pip freeze > requirements.txt
+pip freeze > requirements.txt       # you will see the requirements file appear in your tradebot folder
 
 ```
 
