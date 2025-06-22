@@ -96,8 +96,14 @@ sudo apt-get install python3  # Ubuntu/Debian
 
 
 - Create Binance API keys and save them into a note file because these wont be shown to you again
+```
+https://testnet.binance.vision/ and log in then click on “Generate Key”.
 
-https://testnet.binance.vision/ and clicking on “Generate Key”.
+It should look like this after you have logged in and generated your keys.
+
+![APIKEYS]("C:\Users\ahimb\Desktop\dash_botimg\generatekey.png")
+
+```
 ---
 
 ## 2. Project Structure
