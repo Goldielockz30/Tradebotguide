@@ -8,16 +8,41 @@
 
 - Python 3.9+ installed  
 
-- Create a project folder (e.g., `tradebot`)  
-
-- Create and activate a virtual environment (recommended):  
-  ```bash
+```bash
 
   python --version           # verify you have python - If Python is accessible, it will return its version 
+
+  # or, on macOS/Linux:
+  python3 --version
   ```
+-   If Python is on your PATH, you’ll see something like:
+```bash 
+
+Python 3.12.1
+
+```
+- If you get an error like 'python' is not recognized, or no version number appears, Python isn’t installed or not added to your PATH.
+
+- Windows: Download and install from python.org or via the Microsoft Store. Be sure to check “Add Python to PATH” in the installer .
+
+- macOS/Linux: Usually comes pre-installed, or install via:
+
+```bash
+brew install python  # macOS (Homebrew)
+sudo apt-get install python3  # Ubuntu/Debian
+
+```
+
+- Create a project folder (e.g., `tradebot`)  
+```bash 
+   mkdir tradebot
+   cd tradebot              # this takes you into your folder where you will create your files
+```
+- Create and activate a virtual environment (recommended):  
+  
 
   ```bash
-  python -m venv .venv          # Create the virtual environment (skip if you get a "permission denied" error) 
+  python -m venv .venv          # This step isolates your project's dependencies, preventing conflicts with other Python projects: (skip if you get a "permission denied" error) 
   ```
 
   ```bash
@@ -40,7 +65,9 @@
 - Install the following packages in the virtual environment:  
   ```bash
   pip install ccxt pandas ta streamlit tzlocal
-  ```  
+  ```
+    
+
 
 - Create Binance API keys and enable testnet if needed.
 
@@ -50,9 +77,48 @@
 
 Inside your `tradebot` folder, create the following files:
 
-- `trade_functions.py` – contains reusable functions  
-- `dashstream.py` – the Streamlit dashboard
+- Once all required packages are installed, generate the requirements.txt file:
 
+```bash 
+pip freeze > requirements.txt
+
+```
+- your requirements.txt file will have a list of all installed packages but you can delete them all and replace with just what you need it should look like this
+```bash
+ccxt==4.4.90          # For exchange access (Binance, etc.)
+pandas==2.3.0         # For data manipulation
+ta==0.11.0            # For technical analysis indicators (e.g. RSI)
+streamlit==1.46.0     # For building the dashboard
+tzlocal==5.3.1        # Detects user's local timezone :contentReference[oaicite:1]{index=1
+
+# Optional but recommended
+altair==5.5.0         # Optional: for interactive charts
+plotly==5.21.0        # Optional: advanced plotting
+numpy==2.3.0          # Required by many data libraries
+requests==2.32.4      # For API calls, sometimes used with ccxt
+
+```
+- When setting up the project on a new system, install all dependencies using:
+```bash
+pip install -r requirements.txt
+
+```
+
+- Then create a file for your tradebot and name it `trade_functions.py` – contains reusable functions  
+- Then create a file for your dashboard to call functions from `trade_functions` and name it `dashstream.py` – the Streamlit dashboard
+- You can add these files manually in your tradebot folder or in the vs code command line
+```bash
+ni trade_functions.py
+ni dashstream.py
+
+```
+- or 
+```bash
+New-Item trade_functions.py -ItemType File
+New-Item dashstream.py -ItemType File
+
+```
+- Once your files are created, paste the corresponding code into each one (e.g., trade_functions.py, dashstream.py) to get your bot and dashboard running.
 ---
 
 ## 3. Code for `trade_functions.py`
