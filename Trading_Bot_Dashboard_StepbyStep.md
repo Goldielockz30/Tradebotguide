@@ -6,7 +6,9 @@
 
 ## 1. Prerequisites
 
-- Python 3.9+ installed  
+- Open VS Code: to effectively work with Python in Visual Studio Code (VS Code), you should install the Python extension
+
+- Check if you have Python 3.9+ installed: to check that it has been installed run this in the VS Code command line
 
 ```bash
 
@@ -14,7 +16,8 @@
 
   # or, on macOS/Linux:
   python3 --version
-  ```
+
+```
 -   If Python is on your PATH, you’ll see something like:
 ```bash 
 
@@ -44,6 +47,7 @@ sudo apt-get install python3  # Ubuntu/Debian
   ```bash
   python -m venv .venv          # This step isolates your project's dependencies, preventing conflicts with other Python projects: (skip if you get a "permission denied" error) 
   ```
+  - Virtual Environment Activation: Ensure that your virtual environment is activated before running pip freeze. This ensures that only the packages installed within the virtual environment are included in the requirements.txt file, not global packages.
 
   ```bash
   .\.venv\Scripts\Activate.ps1        # On Windows powershell - works in VS Code
@@ -66,7 +70,7 @@ sudo apt-get install python3  # Ubuntu/Debian
   ```bash
   pip install ccxt pandas ta streamlit tzlocal
   ```
-    
+
 
 
 - Create Binance API keys and enable testnet if needed.
@@ -83,7 +87,9 @@ Inside your `tradebot` folder, create the following files:
 pip freeze > requirements.txt
 
 ```
-- your requirements.txt file will have a list of all installed packages but you can delete them all and replace with just what you need it should look like this
+
+- Global Packages: If you run pip freeze without activating a virtual environment, it will list all globally installed packages, which may not be relevant to your project. In such cases, you can manually edit the requirements.txt file to include only the necessary packages.
+
 ```bash
 ccxt==4.4.90          # For exchange access (Binance, etc.)
 pandas==2.3.0         # For data manipulation
