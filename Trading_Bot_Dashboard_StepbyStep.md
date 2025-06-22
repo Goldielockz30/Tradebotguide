@@ -15,7 +15,7 @@ Book now → [Calendly or Stripe link]
 
 ---
 
-## 1. Prerequisites
+## 1. Okay Lets Gat Started ! - Prerequisites
 
 - Open VS Code: install the Python extension to effectively work with Python in Visual Studio Code (VS Code)
 
