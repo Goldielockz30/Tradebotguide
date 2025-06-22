@@ -2,7 +2,7 @@
 
 
 import streamlit as st
-from trade_functions import get_balances, fetch_data, calculate_rsi, place_order, get_exchange, check_signal
+from trade_functions import get_exchange, get_balances, fetch_data, calculate_rsi, place_order, check_signal
 import pandas as pd
 from tzlocal import get_localzone
 

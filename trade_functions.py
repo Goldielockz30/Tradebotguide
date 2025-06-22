@@ -33,13 +33,18 @@ def calculate_rsi(df):
     df['rsi'] = rsi_indicator.rsi().fillna(0)
     return df
 
-def check_signal(df, rsi_buy_threshold, rsi_sell_threshold):
+def check_signal(df, rsi_buy, rsi_sell):
     last_rsi = df['rsi'].iloc[-1]
-    if last_rsi < rsi_buy_threshold:
+    print(f"Current RSI: {last_rsi:.2f}")
+    if last_rsi < rsi_buy:
+        print(">> BUY SIGNAL")
         return "buy", last_rsi
-    elif last_rsi > rsi_sell_threshold:
+    elif last_rsi > rsi_sell:
+        print(">> SELL SIGNAL")
         return "sell", last_rsi
-    return None, last_rsi
+    else:
+        print(">> NO CLEAR SIGNAL")
+        return None, last_rsi  # Or return "hold", last_rsi
 
 
 def get_balances():
