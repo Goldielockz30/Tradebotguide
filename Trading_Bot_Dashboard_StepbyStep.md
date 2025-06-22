@@ -96,19 +96,15 @@ sudo apt-get install python3  # Ubuntu/Debian
 
 
 - Create Binance API keys and save them into a note file because these wont be shown to you again
-```
-https://testnet.binance.vision/ and log in then click on “Generate Key”.
 
-It should look like this after you have logged in and generated your keys.
+- https://testnet.binance.vision/ and log in then click on “Generate Key”.
 
-![APIKEYS]("C:\Users\ahimb\Desktop\dash_botimg\generatekey.png")
 
-```
 ---
 
 ## 2. Project Structure
 
-Inside your `tradebot` folder, create the following files:
+- Inside your `tradebot` folder, create the following files:
 
 - Once all required packages are installed, generate the requirements.txt file:
 
