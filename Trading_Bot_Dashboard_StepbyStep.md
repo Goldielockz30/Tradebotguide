@@ -62,36 +62,36 @@ sudo apt-get install python3  # Ubuntu/Debian
 - Create and activate a virtual environment (recommended):  
   
 
-  ```bash
+```bash
   python -m venv .venv          # This step isolates your project's dependencies, preventing conflicts with other Python projects: (skip if you get a "permission denied" error) 
   ```
   - Virtual Environment Activation: Ensure that your virtual environment is activated before running pip freeze. This ensures that only the packages installed within the virtual environment are included in the requirements.txt file, not global packages.
 
   - We will use this first command
 
-  ```bash
+```bash
   .\.venv\Scripts\Activate.ps1        # On Windows powershell - works in VS Code
-  ```
+```
   - alternatively
 
-  ```bash
+```bash
   .\.venv\Scripts\activate.bat        # On Windows (Command Prompt):
-  ```
+```
 
-  ```bash
+```bash
   source .venv/bin/activate     # On macOS/Linux  
   ```
   - To deactivate
 
-  ```bash
+```bash
   deactivate # To leave the environment (if needed)
 
-  ``` 
+``` 
 
 - Install the following packages in the virtual environment:  
-  ```bash
+```bash
   pip install ccxt pandas ta streamlit tzlocal
-  ```
+```
 
 
 
