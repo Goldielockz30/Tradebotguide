@@ -1,4 +1,4 @@
-git 
+
 # Step-by-Step Guide to Building a Streamlit Trading Bot Dashboard with VS Code  
 **By Nana Johnson**
 
