@@ -5,17 +5,22 @@
 ## Need Help Installing This Bot?
 
 ### I offer full setup & dashboard hosting:
-- 1-on-1 call
-- Bot installation
-- Custom settings
-- API help
+- 1-on-1 Setup Call — We’ll discuss your goals and get everything tailored to you
+
+- Bot Installation — I’ll install the RSI trading bot on your preferred platform
+
+- Custom Settings — Adjust trade parameters, alerts, and more to fit your strategy
+
+- API Help — Securely connect your exchange API keys and troubleshoot any issues
+
+- Dashboard Hosting — Access a live, easy-to-use dashboard to monitor your bot’s performance in real time
 
 Book now → [Calendly or Stripe link]
 
 
 ---
 
-## 1. Okay Lets Gat Started ! - Prerequisites
+## 1. Okay Lets Get Started ! - Prerequisites
 
 - Open VS Code: install the Python extension to effectively work with Python in Visual Studio Code (VS Code)
 
